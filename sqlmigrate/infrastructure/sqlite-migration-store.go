@@ -36,9 +36,5 @@ func (store *SqliteMigrationStore) ListAll() ([]*entity.Migration, error) {
 }
 
 func (store *SqliteMigrationStore) Register(mig *entity.Migration) error {
-	err := sqlutil.DB{store.db}.InsertOrReplaceEntity("schema_migration", mig)
-	if err != nil {
-		return err
-	}
-	return nil
+	return sqlutil.DB{store.db}.InsertOrReplaceEntity("schema_migration", mig)
 }

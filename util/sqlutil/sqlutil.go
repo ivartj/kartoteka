@@ -2,7 +2,9 @@ package sqlutil
 
 import (
 	"database/sql"
+	"database/sql/driver"
 	"errors"
+	"fmt"
 	"reflect"
 	"strings"
 )
@@ -100,6 +102,8 @@ func (row Row) ScanEntity(entity interface{}) error {
 	return nil
 }
 
+var sqlScannerType reflect.Type = reflect.TypeOf((*sql.Scanner)(nil)).Elem()
+
 func (rows Rows) ScanEntity(columnPrefix string, entity interface{}) error {
 	entityValue := reflect.ValueOf(entity)
 	if entityValue.Kind() != reflect.Ptr {
@@ -117,14 +121,41 @@ func (rows Rows) ScanEntity(columnPrefix string, entity interface{}) error {
 		return err
 	}
 	for columnName, value := range m {
+		if reflect.TypeOf(value) == nullType {
+			continue
+		}
 		if !strings.HasPrefix(columnName, columnPrefix) {
 			continue
 		}
 		fieldName := strings.TrimPrefix(columnName, columnPrefix)
 		field, ok := fieldMap[fieldName]
 		if ok {
-			entityValue.FieldByName(field.structName).Set(reflect.ValueOf(value).Convert(field.typ))
+			fieldValue := entityValue.FieldByName(field.structName)
+			if fieldValue.Type().Implements(sqlScannerType) {
+				fieldValue = fieldValue.Convert(sqlScannerType)
+				retValues := fieldValue.MethodByName("Scan").Call([]reflect.Value{reflect.ValueOf(value)})
+				if !retValues[0].IsNil() {
+					return retValues[0].Interface().(error)
+				}
+			} else {
+				fieldValue.Set(reflect.ValueOf(value).Convert(field.typ))
+			}
 		}
+	}
+	return nil
+}
+
+type null struct{}
+
+var nullType reflect.Type = reflect.TypeOf(null{})
+
+func (n null) Value() (driver.Value, error) {
+	return nil, nil
+}
+
+func (n *null) Scan(value interface{}) error {
+	if value != nil {
+		return fmt.Errorf("%s is not nil", value)
 	}
 	return nil
 }
@@ -136,7 +167,11 @@ func (rows Rows) ScanMap(m map[string]interface{}) error {
 	}
 	values := make([]reflect.Value, len(columnTypes))
 	for i, column := range columnTypes {
-		values[i] = reflect.New(column.ScanType())
+		if column.ScanType() == nil {
+			values[i] = reflect.ValueOf(sql.Scanner(&null{}))
+		} else {
+			values[i] = reflect.New(column.ScanType())
+		}
 		// values[i] = reflect.New(column.ScanType()).Addr()
 	}
 	retValues := reflect.ValueOf(rows.Scan).Call(values)
