@@ -12,6 +12,7 @@ type UserStore interface {
 
 type WordStore interface {
 	Get(id entity.ID) (*entity.Word, error)
+	Add(word *entity.Word) error
 	Update(word *entity.Word) error
 	Delete(id entity.ID) error
 	List(query *WordQuery) ([]*entity.Word, error)
@@ -19,29 +20,10 @@ type WordStore interface {
 }
 
 type WordQuery struct {
-	LangCode string
-	Tags     []string
+	Spec     WordSpec
 	hasRange bool
 	Offset   int
 	Length   int
-}
-
-func (q *WordQuery) SetLanguage(langCode string) *WordQuery {
-	q.LangCode = langCode
-	return q
-}
-
-func (q *WordQuery) HasLanguage() bool {
-	return q.LangCode != ""
-}
-
-func (q *WordQuery) AddTag(tag string) *WordQuery {
-	q.Tags = append(q.Tags, tag)
-	return q
-}
-
-func (q *WordQuery) HasTags() bool {
-	return q.Tags != nil && len(q.Tags) != 0
 }
 
 func (q *WordQuery) SetRange(offset, length int) *WordQuery {

@@ -11,7 +11,7 @@ type FormatBuilder struct {
 
 func (b *FormatBuilder) Add(format string, params ...interface{}) *FormatBuilder {
 	b.sb.WriteString(format)
-	if params == nil {
+	if b.params == nil {
 		b.params = params
 	} else {
 		b.params = append(b.params, params...)

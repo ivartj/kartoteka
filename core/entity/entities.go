@@ -46,8 +46,9 @@ type Word struct {
 	ImageID      UserID `sqlname:"image_id"`
 	Notes        string `sqlname:"notes"`
 
-	Translations []WordTranslation
+	Translations []*WordTranslation
 	Tags         []string
+	UserUsername string
 }
 
 type WordTranslation struct {
