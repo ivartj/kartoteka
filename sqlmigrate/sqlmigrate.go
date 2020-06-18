@@ -34,6 +34,9 @@ func (m *M) MigrateTo(schema string) error {
 	if entry != nil {
 		currentSchema = entry.ToSchema
 	}
+	if currentSchema == schema {
+		return nil
+	}
 	pathFinder := infrastructure.NewPathFinder(m.store)
 	path, err := pathFinder.FindPath(currentSchema, schema)
 	if err != nil {
