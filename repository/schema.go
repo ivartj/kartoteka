@@ -71,13 +71,19 @@ func InitSchema(db core.DB) error {
 		create view word_view as
 		select
 			word.*,
-			group_concat(word_tag.tag, ' ') as tags, 
 			group_concat(word_translation.language_code, ' ') as translation_codes,
-			user.username as username
-		from word
-		left outer join word_tag on word.word_id is word_tag.word_id
-		left outer join word_translation on word.word_id is word_translation.word_id
-		natural join user
+			user.username
+		from
+			(select
+					word.*,
+					group_concat(word_tag.tag, ' ') as tags
+				from
+					word
+					left outer join word_tag on word.word_id is word_tag.word_id
+				group by word.word_id
+			) word
+			left outer join word_translation on word.word_id is word_translation.word_id
+			natural join user
 		group by word.word_id;
 	`)
 	if err != nil {

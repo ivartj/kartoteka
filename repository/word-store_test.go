@@ -100,7 +100,6 @@ func TestWordStoreBasic(t *testing.T) {
 			Word:         "et eple",
 			LanguageCode: "no",
 			UserID:       bobID,
-			Tags:         []string{"a1", "mat"},
 		},
 		&entity.Word{
 			ID:           entity.WordID(entity.NewID()),

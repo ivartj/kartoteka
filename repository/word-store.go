@@ -94,7 +94,6 @@ func (repo *WordStore) Delete(id entity.ID) error {
 
 func (repo *WordStore) List(query *core.WordQuery) ([]*entity.Word, error) {
 	querySql, args := wordQuerySql(query, "*")
-	fmt.Println(querySql)
 	rows, err := repo.db.Query(querySql, args...)
 	if err != nil {
 		return nil, err
@@ -189,5 +188,4 @@ func wordQuerySqlWhereClause(b *util.FormatBuilder, spec core.WordSpec) {
 		b.Add(" username is ?", string(s))
 	}
 	b.Add(" )")
-	fmt.Println(b.Format())
 }

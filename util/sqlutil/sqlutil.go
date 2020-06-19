@@ -92,7 +92,11 @@ func (row Row) ScanEntity(entity interface{}) error {
 	}
 	scanParameters := make([]reflect.Value, len(fields))
 	for i, v := range fields {
-		scanParameters[i] = value.FieldByName(v.structName).Addr()
+		fieldValuePtr := value.FieldByName(v.structName).Addr()
+		if fieldValuePtr.Type().Implements(sqlScannerType) {
+			fieldValuePtr = fieldValuePtr.Convert(sqlScannerType)
+		}
+		scanParameters[i] = fieldValuePtr
 	}
 	retvals := reflect.ValueOf(row).MethodByName("Scan").Call(scanParameters)
 	if !retvals[0].IsNil() {
@@ -131,8 +135,8 @@ func (rows Rows) ScanEntity(columnPrefix string, entity interface{}) error {
 		field, ok := fieldMap[fieldName]
 		if ok {
 			fieldValue := entityValue.FieldByName(field.structName)
-			if fieldValue.Type().Implements(sqlScannerType) {
-				fieldValue = fieldValue.Convert(sqlScannerType)
+			if fieldValue.Addr().Type().Implements(sqlScannerType) {
+				fieldValue = fieldValue.Addr().Convert(sqlScannerType)
 				retValues := fieldValue.MethodByName("Scan").Call([]reflect.Value{reflect.ValueOf(value)})
 				if !retValues[0].IsNil() {
 					return retValues[0].Interface().(error)
@@ -193,6 +197,8 @@ func (db DB) InsertOrReplaceEntity(table string, entity interface{}) error {
 	return db.insertEntity(table, entity, true)
 }
 
+var sqlValuerType reflect.Type = reflect.ValueOf((*driver.Valuer)(nil)).Type().Elem()
+
 func (db DB) insertEntity(table string, entity interface{}, orReplace bool) error {
 	entityValue := reflect.ValueOf(entity)
 	if entityValue.Kind() != reflect.Ptr {
@@ -229,7 +235,11 @@ func (db DB) insertEntity(table string, entity interface{}, orReplace bool) erro
 	execParams := make([]reflect.Value, 1+len(entityFields))
 	execParams[0] = reflect.ValueOf(sb.String())
 	for i, entityField := range entityFields {
-		execParams[i+1] = entityValue.FieldByName(entityField.structName)
+		value := entityValue.FieldByName(entityField.structName)
+		if value.Type().Implements(sqlValuerType) {
+			value = value.Convert(sqlValuerType)
+		}
+		execParams[i+1] = value
 	}
 	retValues := reflect.ValueOf(db.Exec).Call(execParams)
 	if !retValues[1].IsNil() {

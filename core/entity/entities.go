@@ -1,17 +1,31 @@
 package entities
 
 import (
+	"database/sql"
+	"database/sql/driver"
 	"github.com/google/uuid"
 )
 
-type ID []byte
+type ID sql.NullString
 
 func NewID() ID {
-	id := uuid.New()
-	return ID(id[:])
+	var s sql.NullString
+	err := s.Scan(uuid.New().String())
+	if err != nil {
+		panic(err)
+	}
+	return ID(s)
 }
 
 type UserID ID
+
+func (id *UserID) Scan(val interface{}) error {
+	return (*sql.NullString)(id).Scan(val)
+}
+
+func (id UserID) Value() (driver.Value, error) {
+	return sql.NullString(id).Value()
+}
 
 type User struct {
 	ID              UserID `sqlname:"user_id"`
@@ -28,6 +42,14 @@ type Language struct {
 
 type ImageID ID
 
+func (id *ImageID) Scan(val interface{}) error {
+	return (*sql.NullString)(id).Scan(val)
+}
+
+func (id ImageID) Value() (driver.Value, error) {
+	return sql.NullString(id).Value()
+}
+
 type Image struct {
 	ID             ImageID `sqlname:"image_id"`
 	MimeType       string  `sqlname:"mime_type"`
@@ -37,6 +59,14 @@ type Image struct {
 }
 
 type WordID ID
+
+func (id *WordID) Scan(val interface{}) error {
+	return (*sql.NullString)(id).Scan(val)
+}
+
+func (id WordID) Value() (driver.Value, error) {
+	return sql.NullString(id).Value()
+}
 
 type Word struct {
 	ID           WordID `sqlname:"word_id"`
