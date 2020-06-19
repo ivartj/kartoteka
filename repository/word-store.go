@@ -2,6 +2,7 @@ package repository
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"github.com/ivartj/kartotek/core"
 	entity "github.com/ivartj/kartotek/core/entity"
@@ -69,10 +70,10 @@ func (repo *WordStore) Add(word *entity.Word) error {
 				b.Add(",")
 			}
 			b.Add(" (?, ?, ?)", word.ID, tr.LanguageCode, tr.Translation)
-			_, err = repo.db.Exec(b.Format(), b.Args()...)
-			if err != nil {
-				return err
-			}
+		}
+		_, err = repo.db.Exec(b.Format(), b.Args()...)
+		if err != nil {
+			return err
 		}
 	}
 
@@ -102,8 +103,21 @@ func (repo *WordStore) List(query *core.WordQuery) ([]*entity.Word, error) {
 
 	words := []*entity.Word{}
 	for rows.Next() {
+		rowMap := map[string]interface{}{}
+		err = sqlutil.Rows{rows}.ScanMap(rowMap)
+		if err != nil {
+			return nil, err
+		}
 		word := new(entity.Word)
-		err = sqlutil.Rows{rows}.ScanEntity("", word)
+		err = sqlutil.ScanEntityFromMap(rowMap, "", word)
+		if err != nil {
+			return nil, err
+		}
+		translationsJSON, ok := rowMap["translations"].(string)
+		if !ok {
+			return nil, fmt.Errorf("Failed to cast %s to string", translationsJSON)
+		}
+		err = json.Unmarshal([]byte(translationsJSON), &word.Translations)
 		if err != nil {
 			return nil, err
 		}

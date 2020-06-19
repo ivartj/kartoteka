@@ -189,3 +189,81 @@ func TestWordStoreQueryLogicalOperators(t *testing.T) {
 	assert.Equal(t, 2, len(retWords))
 	assert.NotEqual(t, retWords[0].ID, retWords[1].ID)
 }
+
+func TestWordStoreListWithTranslations(t *testing.T) {
+	ctx := newTestContext()
+	defer ctx.db.Close()
+	wordStore := ctx.wordStore
+	bobID := ctx.bobID
+	aliceID := ctx.aliceID
+
+	words := []*entity.Word{
+		&entity.Word{
+			ID:           entity.WordID(entity.NewID()),
+			Word:         "et eple",
+			LanguageCode: "no",
+			UserID:       bobID,
+			Tags:         []string{"a1", "mat"},
+			Translations: []*entity.WordTranslation{
+				&entity.WordTranslation{
+					LanguageCode: "pl",
+					Translation:  "jabłko",
+				},
+				&entity.WordTranslation{
+					LanguageCode: "en",
+					Translation:  "an apple",
+				},
+			},
+		},
+		&entity.Word{
+			ID:           entity.WordID(entity.NewID()),
+			Word:         "en gulrot",
+			LanguageCode: "no",
+			UserID:       aliceID,
+			Tags:         []string{"a1", "mat"},
+		},
+	}
+	for _, word := range words {
+		err := wordStore.Add(word)
+		if err != nil {
+			t.Fatalf("Failed to add a word: %s", err)
+		}
+	}
+
+	retWords, err := wordStore.List(&core.WordQuery{Spec: core.AnyWordSpec{}})
+	if err != nil {
+		t.Fatalf("Failed to list words: %s", err)
+	}
+
+	assert.Equal(t, 2, len(retWords))
+	var bobsWord *entity.Word
+	for _, word := range retWords {
+		if word.UserID == bobID {
+			bobsWord = word
+			break
+		}
+	}
+	if bobsWord == nil {
+		t.Fatalf("Failed to find the word entry by Bob")
+	}
+	assert.Equal(t, 2, len(bobsWord.Translations))
+	for _, languageCode := range []string{"en", "pl"} {
+		languageFound := false
+		for _, translation := range bobsWord.Translations {
+			if translation.LanguageCode == languageCode {
+				languageFound = true
+			} else {
+				continue
+			}
+			switch languageCode {
+			case "en":
+				assert.Equal(t, "an apple", translation.Translation)
+			case "pl":
+				assert.Equal(t, "jabłko", translation.Translation)
+			}
+		}
+		if !languageFound {
+			t.Errorf("Did not find the expected language '%s' among the translations", languageCode)
+		}
+	}
+}

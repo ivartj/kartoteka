@@ -3,6 +3,7 @@ package entities
 import (
 	"database/sql"
 	"database/sql/driver"
+	"encoding/json"
 	"github.com/google/uuid"
 )
 
@@ -68,6 +69,23 @@ func (id WordID) Value() (driver.Value, error) {
 	return sql.NullString(id).Value()
 }
 
+func (id *WordID) UnmarshalJSON(bytes []byte) error {
+	var str string
+	err := json.Unmarshal(bytes, &str)
+	if err != nil {
+		return err
+	}
+	return id.Scan(str)
+}
+
+func (id WordID) Marshal() ([]byte, error) {
+	str, err := id.Value()
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(str.(string))
+}
+
 type Word struct {
 	ID           WordID `sqlname:"word_id"`
 	Word         string `sqlname:"word"`
@@ -82,9 +100,9 @@ type Word struct {
 }
 
 type WordTranslation struct {
-	WordID       WordID `sqlname:"word_id"`
-	LanguageCode string `sqlname:"language_code"`
-	Translation  string `sqlname:"translation"`
+	WordID       WordID `sqlname:"word_id" json:"word_id"`
+	LanguageCode string `sqlname:"language_code" json:"language_code"`
+	Translation  string `sqlname:"translation" json:"translation"`
 }
 
 type WordTag struct {
