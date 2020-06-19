@@ -12,8 +12,9 @@ import (
 
 type testEntity struct {
 	FieldWithoutCorrespondingSQLColumn int
-	ID                                 int    `sqlname:"user_id"`
-	Name                               string `sqlname:"user_name"`
+	ID                                 int            `sqlname:"user_id"`
+	Name                               string         `sqlname:"user_name"`
+	Email                              sql.NullString `sqlname:"email"`
 }
 
 func TestGetEntityColumnString(t *testing.T) {
@@ -22,7 +23,7 @@ func TestGetEntityColumnString(t *testing.T) {
 	if err != nil {
 		t.Fatalf("%s", err)
 	}
-	assert.Equal(t, "user_id, user_name", str)
+	assert.Equal(t, "user_id, user_name, email", str)
 }
 
 type testRow struct{}
@@ -42,6 +43,8 @@ func (sc testRow) Scan(dest ...interface{}) error {
 				return errors.New("Second argument to Scan not a pointer to string")
 			}
 			*name = "ivartj"
+		case 2:
+			v = nil
 		default:
 			return errors.New("More than expected number of arguments to Scan")
 		}
@@ -65,7 +68,8 @@ func TestRowsScanMap(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	rows, err := db.Query("select 123 as user_id, 'ivartj' as user_name;")
+	defer db.Close()
+	rows, err := db.Query("select 123 as user_id, 'ivartj' as user_name, null as email;")
 	if err != nil {
 		panic(err)
 	}
@@ -80,6 +84,7 @@ func TestRowsScanMap(t *testing.T) {
 	}
 	assert.Equal(t, int64(123), m["user_id"])
 	assert.Equal(t, "ivartj", m["user_name"])
+	assert.Equal(t, nil, m["email"])
 }
 
 func TestRowsScanEntity(t *testing.T) {
@@ -87,7 +92,8 @@ func TestRowsScanEntity(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	rows, err := db.Query("select 123 as user_id, 'ivartj' as user_name;")
+	defer db.Close()
+	rows, err := db.Query("select 123 as user_id, 'ivartj' as user_name, null as email;")
 	if err != nil {
 		panic(err)
 	}
@@ -109,10 +115,12 @@ func TestDbInsertEntity(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
+	defer db.Close()
 	_, err = db.Exec(`
 		create table user (
 			user_id integer not null primary key,
-			user_name text not null
+			user_name text not null,
+			email text
 		);
 	`)
 	if err != nil {
@@ -121,15 +129,16 @@ func TestDbInsertEntity(t *testing.T) {
 
 	{
 		user := &testEntity{
-			ID:   123,
-			Name: "ivartj",
+			ID:    123,
+			Name:  "ivartj",
+			Email: sql.NullString{},
 		}
 		err = DB{db}.InsertEntity("user", user)
 		if err != nil {
 			t.Fatalf("Error on inserting entity: %s", err)
 		}
 	}
-	row := db.QueryRow("select user_id, user_name from user;")
+	row := db.QueryRow("select user_id, user_name, email from user;")
 	var user testEntity
 	err = Row{row}.ScanEntity(&user)
 	if err != nil {

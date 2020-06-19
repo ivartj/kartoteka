@@ -13,7 +13,7 @@ func InitSchema(db core.DB) error {
 	err = m.RegisterMigration("", "ivartj-1", `
 
 		create table user (
-			user_id blob not null
+			user_id text not null
 				primary key,
 			username text not null
 				unique,
@@ -32,7 +32,7 @@ func InitSchema(db core.DB) error {
 		);
 
 		create table image (
-			image_id blob not null
+			image_id text not null
 				primary key,
 			mime_type text not null,
 			license text not null,
@@ -41,21 +41,21 @@ func InitSchema(db core.DB) error {
 		);
 
 		create table word (
-			word_id blob not null
+			word_id text not null
 				primary key,
 			word text not null,
 			language_code text not null
 				references language(language_code),
-			user_id blob not null
+			user_id text not null
 				references user(user_id),
-			image_id blob
+			image_id text
 				-- can be null
 				references image(image_id),
 			notes text not null
 		);
 
 		create table word_translation (
-			word_id blob not null
+			word_id text not null
 				references word(word_id),
 			language_code text not null
 				references language(language_code),
@@ -63,7 +63,7 @@ func InitSchema(db core.DB) error {
 		);
 
 		create table word_tag (
-			word_id blob not null
+			word_id text not null
 				references word(word_id),
 			tag text not null
 		);
@@ -72,6 +72,11 @@ func InitSchema(db core.DB) error {
 		select
 			word.*,
 			group_concat(word_translation.language_code, ' ') as translation_codes,
+			json_group_array(json_object(
+				'word_id', json_quote(word_translation.word_id),
+				'language_code', json_quote(word_translation.language_code),
+				'translation', json_quote(word_translation.translation)
+			)) filter ( where word_translation.language_code not null ) as translations,
 			user.username
 		from
 			(select

@@ -109,6 +109,15 @@ func (row Row) ScanEntity(entity interface{}) error {
 var sqlScannerType reflect.Type = reflect.TypeOf((*sql.Scanner)(nil)).Elem()
 
 func (rows Rows) ScanEntity(columnPrefix string, entity interface{}) error {
+	m := map[string]interface{}{}
+	err := rows.ScanMap(m)
+	if err != nil {
+		return err
+	}
+	return ScanEntityFromMap(m, columnPrefix, entity)
+}
+
+func ScanEntityFromMap(m map[string]interface{}, keyPrefix string, entity interface{}) error {
 	entityValue := reflect.ValueOf(entity)
 	if entityValue.Kind() != reflect.Ptr {
 		return errors.New("entity parameter is not a pointer type")
@@ -119,19 +128,14 @@ func (rows Rows) ScanEntity(columnPrefix string, entity interface{}) error {
 		return err
 	}
 	fieldMap := getEntityTypeFieldMap(fields)
-	m := map[string]interface{}{}
-	err = rows.ScanMap(m)
-	if err != nil {
-		return err
-	}
 	for columnName, value := range m {
-		if reflect.TypeOf(value) == nullType {
+		if value == nil {
 			continue
 		}
-		if !strings.HasPrefix(columnName, columnPrefix) {
+		if !strings.HasPrefix(columnName, keyPrefix) {
 			continue
 		}
-		fieldName := strings.TrimPrefix(columnName, columnPrefix)
+		fieldName := strings.TrimPrefix(columnName, keyPrefix)
 		field, ok := fieldMap[fieldName]
 		if ok {
 			fieldValue := entityValue.FieldByName(field.structName)
@@ -184,7 +188,11 @@ func (rows Rows) ScanMap(m map[string]interface{}) error {
 		return err
 	}
 	for i, column := range columnTypes {
-		m[column.Name()] = values[i].Elem().Interface()
+		if column.ScanType() == nil {
+			m[column.Name()] = nil
+		} else {
+			m[column.Name()] = values[i].Elem().Interface()
+		}
 	}
 	return nil
 }
