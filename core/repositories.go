@@ -5,16 +5,16 @@ import (
 )
 
 type UserStore interface {
-	Get(id entity.ID) (*entity.User, error)
+	Get(id entity.UserID) (*entity.User, error)
 	Update(word *entity.User) error
-	Delete(id entity.ID) error
+	Delete(id entity.UserID) error
 }
 
 type WordStore interface {
-	Get(id entity.ID) (*entity.Word, error)
+	Get(id entity.WordID) (*entity.Word, error)
 	Add(word *entity.Word) error
 	Update(word *entity.Word) error
-	Delete(id entity.ID) error
+	Delete(id entity.WordID) error
 	List(query *WordQuery) ([]*entity.Word, error)
 	Count(query *WordQuery) (int, error)
 }

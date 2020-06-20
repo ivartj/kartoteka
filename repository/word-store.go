@@ -25,28 +25,22 @@ type scanner interface {
 	Scan(dest ...interface{}) error
 }
 
-func (repo *WordStore) Get(id entity.ID) (*entity.Word, error) {
-	stmtSql := `
-		select id, word, language_code, image_id, notes from word where id = :id;`
-
-	var word entity.Word
-
-	row := repo.db.QueryRow(stmtSql, sql.Named("id", id))
-	err := sqlutil.Row{row}.ScanEntity(&word)
-	if err == sql.ErrNoRows {
-		return nil, core.ErrNotFound
-	}
-	if err != nil {
-	}
-
-	return &word, nil
-}
-
 func (repo *WordStore) Add(word *entity.Word) error {
 	err := sqlutil.DB{repo.db}.InsertEntity("word", word)
 	if err != nil {
 		return err
 	}
+
+	err = repo.addTagsAndTranslations(word)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (repo *WordStore) addTagsAndTranslations(word *entity.Word) error {
+	var err error
 	if word.Tags != nil && len(word.Tags) != 0 {
 		b := new(util.FormatBuilder)
 		b.Add("INSERT INTO word_tag (word_id, tag) VALUES")
@@ -80,17 +74,76 @@ func (repo *WordStore) Add(word *entity.Word) error {
 	return nil
 }
 
+func (repo *WordStore) deleteTagsAndTranslations(word *entity.Word) error {
+	_, err := repo.db.Exec("DELETE FROM word_tag WHERE word_id = ?", word.ID)
+	if err != nil {
+		return err
+	}
+	_, err = repo.db.Exec("DELETE FROM word_translation WHERE word_id = ?", word.ID)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (repo *WordStore) Update(word *entity.Word) error {
 	err := sqlutil.DB{repo.db}.InsertOrReplaceEntity("word", word)
 	if err != nil {
 		return err
 	}
+	err = repo.deleteTagsAndTranslations(word)
+	if err != nil {
+		return err
+	}
+	err = repo.addTagsAndTranslations(word)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (repo *WordStore) Delete(id entity.WordID) error {
+	_, err := repo.db.Exec("delete from word where word_id = ?;", id)
 	return err
 }
 
-func (repo *WordStore) Delete(id entity.ID) error {
-	_, err := repo.db.Exec("delete from word where word_id = ?;", id)
-	return err
+func (repo *WordStore) Get(id entity.WordID) (*entity.Word, error) {
+	rows, err := repo.db.Query("SELECT * FROM word_view WHERE word_id = ?", id)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	ok := rows.Next()
+	if !ok {
+		return nil, core.ErrNotFound
+	}
+	var word entity.Word
+	err = scanWord(rows, "", &word)
+	if err != nil {
+		return nil, err
+	}
+	return &word, nil
+}
+
+func scanWord(rows *sql.Rows, columnPrefix string, word *entity.Word) error {
+	rowMap := map[string]interface{}{}
+	err := sqlutil.Rows{rows}.ScanMap(rowMap)
+	if err != nil {
+		return err
+	}
+	err = sqlutil.ScanEntityFromMap(rowMap, columnPrefix, word)
+	if err != nil {
+		return err
+	}
+	translationsJSON, ok := rowMap["translations"].(string)
+	if !ok {
+		return fmt.Errorf("Failed to cast %s to string", translationsJSON)
+	}
+	err = json.Unmarshal([]byte(translationsJSON), &word.Translations)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func (repo *WordStore) List(query *core.WordQuery) ([]*entity.Word, error) {
@@ -103,21 +156,8 @@ func (repo *WordStore) List(query *core.WordQuery) ([]*entity.Word, error) {
 
 	words := []*entity.Word{}
 	for rows.Next() {
-		rowMap := map[string]interface{}{}
-		err = sqlutil.Rows{rows}.ScanMap(rowMap)
-		if err != nil {
-			return nil, err
-		}
 		word := new(entity.Word)
-		err = sqlutil.ScanEntityFromMap(rowMap, "", word)
-		if err != nil {
-			return nil, err
-		}
-		translationsJSON, ok := rowMap["translations"].(string)
-		if !ok {
-			return nil, fmt.Errorf("Failed to cast %s to string", translationsJSON)
-		}
-		err = json.Unmarshal([]byte(translationsJSON), &word.Translations)
+		err = scanWord(rows, "", word)
 		if err != nil {
 			return nil, err
 		}

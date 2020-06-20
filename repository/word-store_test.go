@@ -42,6 +42,10 @@ func newTestContext() *testContext {
 			NativeName: "Norsk",
 		},
 		entity.Language{
+			Code:       "nn",
+			NativeName: "Nynorsk",
+		},
+		entity.Language{
 			Code:       "pl",
 			NativeName: "Polski",
 		},
@@ -266,4 +270,50 @@ func TestWordStoreListWithTranslations(t *testing.T) {
 			t.Errorf("Did not find the expected language '%s' among the translations", languageCode)
 		}
 	}
+}
+
+func TestWordStoreUpdate(t *testing.T) {
+	ctx := newTestContext()
+	defer ctx.db.Close()
+	wordStore := ctx.wordStore
+	bobID := ctx.bobID
+	//aliceID := ctx.aliceID
+
+	word := &entity.Word{
+		ID:           entity.WordID(entity.NewID()),
+		Word:         "et eple",
+		LanguageCode: "no",
+		UserID:       bobID,
+		Translations: []*entity.WordTranslation{
+			&entity.WordTranslation{
+				LanguageCode: "pl",
+				Translation:  "jabłko",
+			},
+			&entity.WordTranslation{
+				LanguageCode: "en",
+				Translation:  "apple",
+			},
+		},
+	}
+	err := wordStore.Add(word)
+	if err != nil {
+		panic(err)
+	}
+
+	word.Translations[1].Translation = "an apple"
+	word.Translations = append(word.Translations, &entity.WordTranslation{
+		LanguageCode: "nn",
+		Translation:  "eit eple",
+	})
+	err = wordStore.Update(word)
+	if err != nil {
+		t.Fatalf("Failed to update word: %s", err)
+	}
+
+	word, err = wordStore.Get(word.ID)
+	if err != nil {
+		t.Fatalf("Failed to retrieve updated translation: %s", err)
+	}
+
+	assert.Equal(t, 3, len(word.Translations))
 }
