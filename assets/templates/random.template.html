@@ -1,6 +1,6 @@
 {{define "random-index"}}
 <!doctype html>
-<html lang="pl">
+<html lang="en">
 	<!-- TODO: Make language dependent on page language -->
 	<!-- TODO: Translate parts of the page using i18n -->
 	<head>
@@ -8,6 +8,9 @@
 		<title>Enter word specification</title>
 		<meta name="viewport"
 		      content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet"
+		      type="text/css"
+		      href="/static/styles.css" />
 	</head>
 	<body>
 		<h1>Enter word specification</h1>
@@ -25,38 +28,63 @@
 {{define "random-word"}}
 <!doctype html>
 <html lang="{{.Word.LanguageCode}}">
-	<!-- TODO: Make language dependent on page language -->
 	<!-- TODO: Translate parts of the page using i18n -->
 	<head>
 		<meta charset="utf-8" />
-		<title>{{.Word.Word}}</title>
+		<title>{{if .Error}}ERROR: {{.Error}}{{else}}{{.Word.Word}}{{end}}</title>
 		<meta name="viewport"
 		      content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet"
+		      type="text/css"
+		      href="/static/styles.css" />
 	</head>
 	<body>
-		<h1>{{.Word.Word}}</h1>
-		<p>{{.Word.Notes}}</p>
-		<h2>Translations</h2>
-		<dl>
-			{{range .Word.Translations}}
-				<dt>{{.LanguageCode}}</dt>
-				<dd>{{.Translation}}</dd>
-			{{end}}
-		</dl>
-		<p>
-			{{range .Word.Tags}}
-				#{{.}}
-			{{end}}
-		</p>
-		<h2>New word</h2>
-		<form>
-			<input type="text"
-			       name="q"
-						 value="{{.Spec}}"
-						 placeholder="lang:pl tr:en (#a1|#a2)" />
-			<input type="submit"
-			       value="Get" />
-		</form>
+		{{if .Error}}
+			<section class="error">
+				<h1>Error</h1>
+				<p>{{.Error}}</p>
+			</section>
+		{{else}}
+			<article class="random-word">
+				<h1>{{.Word.Word}}</h1>
+
+				{{if .Word.Notes}}
+					<p>{{.Word.Notes}}</p>
+				{{end}}
+
+				{{if .Word.Translations}}
+					<h2>Translations</h2>
+					<dl class="random-word-translations">
+						{{with $ctx := .}}
+						{{range .Word.Translations}}
+							<dt lang="{{.LanguageCode}}">{{index $ctx.LanguageNativeNameMap .LanguageCode}}</dt>
+							<dd lang="{{.LanguageCode}}">{{.Translation}}</dd>
+						{{end}}
+						{{end}}
+					</dl>
+				{{end}}
+
+				{{if .Word.Tags}}
+					<p>
+						Tags:
+						{{range .Word.Tags}}
+							#{{.}}
+						{{end}}
+					</p>
+				{{end}}
+			</article>
+		{{end}}
+		<section>
+			<h2>New word</h2>
+			<form>
+				<input type="text"
+							 name="q"
+							 value="{{.Spec}}"
+							 placeholder="lang:pl tr:en (#a1|#a2)" />
+				<input type="submit"
+							 value="Get" />
+			</form>
+		</section>
 	</body>
 </html>
 {{end}}

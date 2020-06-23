@@ -1,0 +1,33 @@
+body {
+	color: black;
+	background-color: #FFCDB2;
+	font-family: sans-serif;
+}
+
+article, section {
+	max-width: 40em;
+	padding: 0 0.5em;
+}
+
+article.random-word h1 {
+	font-size: 300%;
+}
+
+dl.random-word-translations {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+
+dl.random-word-translations dt::after {
+	content: ": ";
+}
+
+dl.random-word-translations dt {
+	width: 15%;
+}
+
+dl.random-word-translations dd {
+	margin: 0;
+	width: 85%;
+}

@@ -1,7 +1,6 @@
 package service
 
 import (
-	"errors"
 	"fmt"
 	"github.com/ivartj/kartotek/core"
 	entity "github.com/ivartj/kartotek/core/entity"
@@ -30,7 +29,7 @@ func (lot *WordLottery) DrawWord() (*entity.Word, error) {
 		return nil, fmt.Errorf("Error getting a count of matching words: %w", err)
 	}
 	if numberOfCards == 0 {
-		return nil, errors.New("No cards to draw from")
+		return nil, core.ErrNotFound
 	}
 	drawnCardNumber := lot.rng.Int() % numberOfCards
 	query.SetRange(drawnCardNumber, 1)

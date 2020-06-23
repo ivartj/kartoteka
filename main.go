@@ -183,11 +183,12 @@ func mainParseTemplateFiles(templateDirectory string) (*template.Template, error
 	return tpl, nil
 }
 
-func mainHTTPHandler(db *sql.DB, tpl *template.Template) http.Handler {
+func mainHTTPHandler(db *sql.DB, tpl *template.Template, staticDirectory string) http.Handler {
 	mux := http.NewServeMux()
 
 	random := controller.NewRandom(db, tpl)
 	mux.Handle("/random", random)
+	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir(staticDirectory))))
 
 	return mux
 }
@@ -213,7 +214,7 @@ func main() {
 		logger.Fatalf("Error parsing template files: %s", err)
 	}
 
-	handler := mainHTTPHandler(db, tpl)
+	handler := mainHTTPHandler(db, tpl, cfg.AssetsDirectory+"/static")
 	err = http.ListenAndServe(fmt.Sprintf(":%d", cfg.Port), handler)
 	if err != nil {
 		logger.Fatalf("Error serving HTTP requests: %s", err)
