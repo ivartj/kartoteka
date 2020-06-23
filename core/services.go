@@ -11,3 +11,7 @@ type WordLottery interface {
 type Rand interface {
 	Int() int
 }
+
+type LanguageService interface {
+	GetNativeNameMap() (map[string]string, error)
+}

@@ -2,6 +2,8 @@ package controller
 
 import (
 	"database/sql"
+	"github.com/ivartj/kartotek/core"
+	entity "github.com/ivartj/kartotek/core/entity"
 	"github.com/ivartj/kartotek/repository"
 	"github.com/ivartj/kartotek/service"
 	"github.com/ivartj/kartotek/syntax"
@@ -60,27 +62,50 @@ func (ctx *Random) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 			panic(err)
 		}
 	} else {
-		tx := ctx.Tx()
-		defer tx.Rollback()
-		wordStore := repository.NewWordStore(tx)
-		wordSpec, err := syntax.ParseWordSpec(q)
-		if err != nil {
-			// TODO: report to user
-			panic(err)
-		}
-		wordLottery := service.NewWordLottery(wordStore, wordSpec, ctx.rng)
-		word, err := wordLottery.DrawWord()
-		if err != nil {
-			// TODO: report to user in case of core.ErrNotFound
-			panic(err)
-		}
-		err = ctx.Template().ExecuteTemplate(w, "random-word", map[string]interface{}{
-			"Word": word,
+		var wordStore core.WordStore
+		var wordLottery core.WordLottery
+		var word *entity.Word
+		var wordSpec core.WordSpec
+		var tx *sql.Tx
+		var languageNativeNameMap map[string]string
+
+		pageData := map[string]interface{}{
 			"Spec": q,
-		})
+		}
+
+		wordSpec, err = syntax.ParseWordSpec(q)
+		if err != nil {
+			pageData["Error"] = err.Error()
+			goto render
+		}
+
+		tx = ctx.Tx()
+		defer tx.Rollback()
+
+		languageNativeNameMap, err = service.NewLanguageService(repository.NewLanguageStore(tx)).GetNativeNameMap()
 		if err != nil {
 			panic(err)
 		}
-		tx.Commit()
+		pageData["LanguageNativeNameMap"] = languageNativeNameMap
+
+		wordStore = repository.NewWordStore(tx)
+		wordLottery = service.NewWordLottery(wordStore, wordSpec, ctx.rng)
+		word, err = wordLottery.DrawWord()
+		if err == core.ErrNotFound {
+			pageData["Error"] = "No word entries match that query"
+			goto render
+		} else if err != nil {
+			panic(err)
+		}
+		pageData["Word"] = word
+
+	render:
+		err = ctx.Template().ExecuteTemplate(w, "random-word", pageData)
+		if err != nil {
+			panic(err)
+		}
+		if tx != nil {
+			tx.Commit()
+		}
 	}
 }
