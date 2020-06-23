@@ -1,0 +1,62 @@
+{{define "random-index"}}
+<!doctype html>
+<html lang="pl">
+	<!-- TODO: Make language dependent on page language -->
+	<!-- TODO: Translate parts of the page using i18n -->
+	<head>
+		<meta charset="utf-8" />
+		<title>Enter word specification</title>
+		<meta name="viewport"
+		      content="width=device-width, initial-scale=1" />
+	</head>
+	<body>
+		<h1>Enter word specification</h1>
+		<form>
+			<input type="text"
+			       name="q"
+						 placeholder="lang:pl tr:en (#a1|#a2)" />
+			<input type="submit"
+			       value="Get" />
+		</form>
+	</body>
+</html>
+{{end}}
+
+{{define "random-word"}}
+<!doctype html>
+<html lang="{{.Word.LanguageCode}}">
+	<!-- TODO: Make language dependent on page language -->
+	<!-- TODO: Translate parts of the page using i18n -->
+	<head>
+		<meta charset="utf-8" />
+		<title>{{.Word.Word}}</title>
+		<meta name="viewport"
+		      content="width=device-width, initial-scale=1" />
+	</head>
+	<body>
+		<h1>{{.Word.Word}}</h1>
+		<p>{{.Word.Notes}}</p>
+		<h2>Translations</h2>
+		<dl>
+			{{range .Word.Translations}}
+				<dt>{{.LanguageCode}}</dt>
+				<dd>{{.Translation}}</dd>
+			{{end}}
+		</dl>
+		<p>
+			{{range .Word.Tags}}
+				#{{.}}
+			{{end}}
+		</p>
+		<h2>New word</h2>
+		<form>
+			<input type="text"
+			       name="q"
+						 value="{{.Spec}}"
+						 placeholder="lang:pl tr:en (#a1|#a2)" />
+			<input type="submit"
+			       value="Get" />
+		</form>
+	</body>
+</html>
+{{end}}

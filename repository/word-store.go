@@ -137,12 +137,17 @@ func scanWord(rows *sql.Rows, columnPrefix string, word *entity.Word) error {
 	}
 	translationsJSON, ok := rowMap["translations"].(string)
 	if !ok {
-		return fmt.Errorf("Failed to cast %s to string", translationsJSON)
+		return fmt.Errorf("Failed to cast %s to string", rowMap["translations"])
 	}
 	err = json.Unmarshal([]byte(translationsJSON), &word.Translations)
 	if err != nil {
 		return err
 	}
+	tagString, ok := rowMap["tags"].(string)
+	if !ok {
+		return fmt.Errorf("Failed to cast %s to string", rowMap["tags"])
+	}
+	word.Tags = strings.Split(tagString, " ")
 	return nil
 }
 
@@ -167,7 +172,7 @@ func (repo *WordStore) List(query *core.WordQuery) ([]*entity.Word, error) {
 }
 
 func (repo *WordStore) Count(query *core.WordQuery) (int, error) {
-	querySql, args := wordQuerySql(query, "word.*")
+	querySql, args := wordQuerySql(query, "count(*)")
 	row := repo.db.QueryRow(querySql, args...)
 	var count int
 	err := row.Scan(&count)

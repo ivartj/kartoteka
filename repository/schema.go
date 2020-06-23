@@ -5,6 +5,8 @@ import (
 	"github.com/ivartj/kartotek/sqlmigrate"
 )
 
+const currentSchema = "ivartj-1"
+
 func InitSchema(db core.DB) error {
 	m, err := sqlmigrate.New(db)
 	if err != nil {
@@ -95,7 +97,7 @@ func InitSchema(db core.DB) error {
 		return err
 	}
 
-	err = m.MigrateTo("ivartj-1")
+	err = m.MigrateTo(currentSchema)
 	if err != nil {
 		return err
 	}
