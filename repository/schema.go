@@ -58,7 +58,8 @@ func InitSchema(db core.DB) error {
 
 		create table word_translation (
 			word_id text not null
-				references word(word_id),
+				references word(word_id)
+				on delete cascade,
 			language_code text not null
 				references language(language_code),
 			translation text not null
@@ -66,7 +67,8 @@ func InitSchema(db core.DB) error {
 
 		create table word_tag (
 			word_id text not null
-				references word(word_id),
+				references word(word_id)
+				on delete cascade,
 			tag text not null
 		);
 
@@ -78,12 +80,12 @@ func InitSchema(db core.DB) error {
 				'word_id', json_quote(word_translation.word_id),
 				'language_code', json_quote(word_translation.language_code),
 				'translation', json_quote(word_translation.translation)
-			)) filter ( where word_translation.language_code not null ) as translations,
+			)) filter ( where word_translation.language_code is not null ) as translations,
 			user.username
 		from
 			(select
 					word.*,
-					group_concat(word_tag.tag, ' ') as tags
+					coalesce(group_concat(word_tag.tag, ' '), ' ') as tags
 				from
 					word
 					left outer join word_tag on word.word_id is word_tag.word_id

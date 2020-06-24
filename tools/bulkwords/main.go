@@ -76,7 +76,7 @@ func main() {
 		var w word
 		err = toml.Unmarshal([]byte(wordSection), &w)
 		if err != nil {
-			panic(err)
+			panic(fmt.Errorf("Parse error '%w' when parsing: %s", err, wordSection))
 		}
 		word := &entity.Word{
 			ID:           entity.WordID(entity.NewID()),
@@ -94,7 +94,7 @@ func main() {
 		}
 		err = wordStore.Add(word)
 		if err != nil {
-			panic(err)
+			panic(fmt.Errorf("Error adding word '%s': %w", word.Word, err))
 		}
 	}
 

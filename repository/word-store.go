@@ -164,7 +164,7 @@ func (repo *WordStore) List(query *core.WordQuery) ([]*entity.Word, error) {
 		word := new(entity.Word)
 		err = scanWord(rows, "", word)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("Failed to scan word from database: %w", err)
 		}
 		words = append(words, word)
 	}
