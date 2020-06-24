@@ -14,9 +14,9 @@ article.random-word h1 {
 }
 
 dl.random-word-translations {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
+	display: grid;
+	grid-template-columns: repeat(2, lfr);
+	grid-auto-columns: min-content max-content;
 }
 
 dl.random-word-translations dt::after {
@@ -24,10 +24,13 @@ dl.random-word-translations dt::after {
 }
 
 dl.random-word-translations dt {
-	width: 15%;
+	grid-column: 1;
+	-ms-grid-column: 1;
+	padding-right: 1em;
 }
 
 dl.random-word-translations dd {
+	grid-column: 2;
+	-ms-grid-column: 2;
 	margin: 0;
-	width: 85%;
 }
