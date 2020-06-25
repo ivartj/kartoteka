@@ -1461,3 +1461,336 @@ tags = [ 'a2' ]
 [tr]
 en = 'shampoo'
 
+--
+
+word = 'księgowy, księgowa'
+lang = 'pl'
+tags = [ 'b1', 'osoba', 'zawód' ]
+
+[tr]
+en = 'an accountant'
+no = 'en regnskapsfører'
+
+--
+
+word = 'powietrze'
+lang = 'pl'
+tags = [ 'b1', 'przyroda' ]
+
+[tr]
+en = 'air'
+no = '(ei) luft'
+
+--
+
+word = 'pięta'
+lang = 'pl'
+tags = [ 'b1', 'ciało' ]
+
+[tr]
+en = 'a heel'
+no = 'en hæl'
+
+--
+
+word = 'mrówka'
+lang = 'pl'
+tags = [ 'b1', 'zwierzę' ]
+
+[tr]
+en = 'an ant'
+no = 'en maur'
+
+--
+
+word = 'balkon'
+lang = 'pl'
+tags = [ 'b1', 'budynek' ]
+
+[tr]
+en = 'a balcony'
+no = 'en balkong'
+
+--
+
+word = 'bandaż'
+lang = 'pl'
+tags = [ 'b1', 'bandaż' ]
+
+[tr]
+en = 'bandage'
+no = '(en) bandasje'
+
+--
+
+word = 'kosz, koszyk'
+lang = 'pl'
+tags = [ 'b1', 'mebel' ]
+
+[tr]
+en = 'a basket'
+no = 'en kurv'
+
+--
+
+word = 'wanna'
+lang = 'pl'
+tags = [ 'b1', 'mebel' ]
+
+[tr]
+en = 'a bathtub'
+no = 'et badekar'
+
+--
+
+word = 'dzwonek'
+lang = 'pl'
+tags = [ 'b1' ]
+notes = '"Dzwon" ogólnie jest czymś zdecydowanie większym.'
+
+[tr]
+en = 'a bell (small, not belfry-sized)'
+no = 'ei bjelle (liten)'
+
+--
+
+word = 'bomba'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a bomb'
+no = 'ei bombe'
+
+--
+
+word = 'biblioteczka'
+lang = 'pl'
+tags = [ 'b1', 'mebel' ]
+
+[tr]
+en = 'a bookcase'
+no = 'ei bokhylle'
+
+--
+
+word = 'księgarnia'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a bookstore'
+no = 'en bokhandel'
+
+--
+
+word = 'butelka'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a bottle'
+no = 'ei flaske'
+
+--
+
+word = 'bransoletka'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a bracelet'
+no = 'et armbånd'
+
+--
+
+word = 'hamulec'
+lang = 'pl'
+tags = [ 'b1', 'podróż' ]
+
+[tr]
+en = 'a brake'
+no = 'ei bremse'
+
+--
+
+word = 'most'
+lang = 'pl'
+tags = [ 'b1', 'budynek' ]
+
+[tr]
+en = 'a bridge'
+no = 'ei bro'
+
+--
+
+word = 'brokuł'
+lang = 'pl'
+tags = [ 'b1', 'jedzenie' ]
+
+[tr]
+en = 'broccoli'
+no = '(en) brokkoli'
+
+--
+
+word = 'wiadro'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a bucket'
+no = 'ei bøtte'
+
+--
+
+word = 'żarówka'
+lang = 'pl'
+tags = [ 'b1', 'urządzenie' ]
+
+[tr]
+en = 'a lightbulb'
+no = 'ei lyspære'
+
+--
+
+word = 'motyl'
+lang = 'pl'
+tags = [ 'b1', 'zwierzę' ]
+
+[tr]
+en = 'a butterfly'
+no = 'en sommerfugl'
+
+--
+
+word = 'klatka'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a cage'
+no = 'et bur'
+
+--
+
+word = 'łańcuch, łańcuszek'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a chain'
+no = 'et kjede'
+
+--
+
+word = 'świeca, świeczka'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a candle'
+no = 'et lys, et stearinlys'
+
+--
+
+word = 'kreskówka'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a cartoon (animated film)'
+no = 'en tegnefilm'
+
+--
+
+word = 'sufit'
+lang = 'pl'
+tags  = [ 'b1', 'budynek' ]
+
+[tr]
+en = 'a ceiling'
+no = 'et tak (øvre siden av et rom)'
+
+--
+
+word = 'klaun'
+lang = 'pl'
+tags = [ 'b1', 'osoba', 'zawód' ]
+
+[tr]
+en = 'a clown'
+no = 'en klovn'
+
+--
+
+word = 'moneta'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a coin'
+no = 'en mynt'
+
+--
+
+word = 'kołnierz'
+lang = 'pl'
+tags = [ 'b1', 'ubranie' ]
+
+[tr]
+en = 'a collar'
+no = 'en krage'
+
+--
+
+word = 'bawełna'
+lang = 'pl'
+tags = [ 'b1', 'ubranie' ]
+
+[tr]
+en = 'cotton'
+no = '(et) bomull'
+
+--
+
+word = 'przestępca, przestępczyni'
+lang = 'pl'
+tags = [ 'b1', 'osoba' ]
+
+[tr]
+en = 'a criminal'
+no = 'en kriminell'
+
+--
+
+word = 'ogórek'
+lang = 'pl'
+tags = [ 'b1', 'jedzenie' ]
+
+[tr]
+en = 'a cucumber'
+no = 'en agurk'
+
+--
+
+word = 'filiżanka'
+lang = 'pl'
+tags = [ 'b1', 'kuchnia' ]
+
+[tr]
+en = 'a cup, a teacup'
+no = 'en kopp, en tekopp'
+
+--
+
+word = 'biurko'
+lang = 'pl'
+tags = [ 'b1', 'biuro' ]
+notes = 'Związanymi słowami są "pulpit" i "ławka szkolna".'
+
+[tr]
+en = 'a desk (not a school desk)'
+no = 'en pult (ikke en skolepult)'
+
+
