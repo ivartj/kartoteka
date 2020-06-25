@@ -2,7 +2,7 @@ package infrastructure
 
 import (
 	"database/sql"
-	"github.com/ivartj/kartotek/sqlmigrate/core/entity"
+	"github.com/ivartj/kartoteka/sqlmigrate/core/entity"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/stretchr/testify/assert"
 	"testing"

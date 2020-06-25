@@ -10,7 +10,7 @@ import __yyfmt__ "fmt"
 import (
 	"errors"
 	"fmt"
-	"github.com/ivartj/kartotek/core"
+	"github.com/ivartj/kartoteka/core"
 	"strings"
 )
 

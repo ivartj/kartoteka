@@ -2,7 +2,7 @@ package infrastructure
 
 import (
 	"fmt"
-	"github.com/ivartj/kartotek/sqlmigrate/core"
+	"github.com/ivartj/kartoteka/sqlmigrate/core"
 )
 
 func SqliteInitBaseSchema(db core.DB) error {

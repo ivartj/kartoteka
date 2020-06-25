@@ -1,7 +1,7 @@
 package infrastructure
 
 import (
-	"github.com/ivartj/kartotek/sqlmigrate/core/entity"
+	"github.com/ivartj/kartoteka/sqlmigrate/core/entity"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

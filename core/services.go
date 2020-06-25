@@ -1,7 +1,7 @@
 package core
 
 import (
-	entity "github.com/ivartj/kartotek/core/entity"
+	entity "github.com/ivartj/kartoteka/core/entity"
 )
 
 type WordLottery interface {

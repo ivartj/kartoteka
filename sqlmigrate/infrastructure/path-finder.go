@@ -3,8 +3,8 @@ package infrastructure
 import (
 	"container/list"
 	"errors"
-	"github.com/ivartj/kartotek/sqlmigrate/core"
-	"github.com/ivartj/kartotek/sqlmigrate/core/entity"
+	"github.com/ivartj/kartoteka/sqlmigrate/core"
+	"github.com/ivartj/kartoteka/sqlmigrate/core/entity"
 )
 
 type PathFinder struct {

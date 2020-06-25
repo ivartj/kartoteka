@@ -2,7 +2,7 @@ package syntax
 
 import (
 	"fmt"
-	"github.com/ivartj/kartotek/core"
+	"github.com/ivartj/kartoteka/core"
 	"strings"
 )
 

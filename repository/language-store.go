@@ -1,9 +1,9 @@
 package repository
 
 import (
-	"github.com/ivartj/kartotek/core"
-	entity "github.com/ivartj/kartotek/core/entity"
-	"github.com/ivartj/kartotek/util/sqlutil"
+	"github.com/ivartj/kartoteka/core"
+	entity "github.com/ivartj/kartoteka/core/entity"
+	"github.com/ivartj/kartoteka/util/sqlutil"
 )
 
 type LanguageStore struct {

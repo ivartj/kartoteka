@@ -1,7 +1,7 @@
 package service
 
 import (
-	"github.com/ivartj/kartotek/core"
+	"github.com/ivartj/kartoteka/core"
 )
 
 type LanguageService struct {

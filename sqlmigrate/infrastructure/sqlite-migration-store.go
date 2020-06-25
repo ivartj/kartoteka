@@ -1,9 +1,9 @@
 package infrastructure
 
 import (
-	"github.com/ivartj/kartotek/sqlmigrate/core"
-	"github.com/ivartj/kartotek/sqlmigrate/core/entity"
-	"github.com/ivartj/kartotek/util/sqlutil"
+	"github.com/ivartj/kartoteka/sqlmigrate/core"
+	"github.com/ivartj/kartoteka/sqlmigrate/core/entity"
+	"github.com/ivartj/kartoteka/util/sqlutil"
 )
 
 type SqliteMigrationStore struct {

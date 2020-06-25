@@ -1,7 +1,7 @@
 package syntax
 
 import (
-	"github.com/ivartj/kartotek/core"
+	"github.com/ivartj/kartoteka/core"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

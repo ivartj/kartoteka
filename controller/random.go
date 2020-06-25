@@ -2,11 +2,11 @@ package controller
 
 import (
 	"database/sql"
-	"github.com/ivartj/kartotek/core"
-	entity "github.com/ivartj/kartotek/core/entity"
-	"github.com/ivartj/kartotek/repository"
-	"github.com/ivartj/kartotek/service"
-	"github.com/ivartj/kartotek/syntax"
+	"github.com/ivartj/kartoteka/core"
+	entity "github.com/ivartj/kartoteka/core/entity"
+	"github.com/ivartj/kartoteka/repository"
+	"github.com/ivartj/kartoteka/service"
+	"github.com/ivartj/kartoteka/syntax"
 	"html/template"
 	"math/rand"
 	"net/http"

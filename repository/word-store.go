@@ -4,10 +4,10 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	"github.com/ivartj/kartotek/core"
-	entity "github.com/ivartj/kartotek/core/entity"
-	util "github.com/ivartj/kartotek/util"
-	sqlutil "github.com/ivartj/kartotek/util/sqlutil"
+	"github.com/ivartj/kartoteka/core"
+	entity "github.com/ivartj/kartoteka/core/entity"
+	util "github.com/ivartj/kartoteka/util"
+	sqlutil "github.com/ivartj/kartoteka/util/sqlutil"
 	"strings"
 )
 

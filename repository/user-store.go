@@ -2,9 +2,9 @@ package repository
 
 import (
 	"database/sql"
-	"github.com/ivartj/kartotek/core"
-	entity "github.com/ivartj/kartotek/core/entity"
-	"github.com/ivartj/kartotek/util/sqlutil"
+	"github.com/ivartj/kartoteka/core"
+	entity "github.com/ivartj/kartoteka/core/entity"
+	"github.com/ivartj/kartoteka/util/sqlutil"
 )
 
 type UserStore struct {

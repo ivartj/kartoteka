@@ -3,9 +3,9 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/ivartj/kartotek/controller"
-	"github.com/ivartj/kartotek/core"
-	"github.com/ivartj/kartotek/repository"
+	"github.com/ivartj/kartoteka/controller"
+	"github.com/ivartj/kartoteka/core"
+	"github.com/ivartj/kartoteka/repository"
 	"github.com/ivartj/minn/args"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/nicksnyder/go-i18n/i18n"
@@ -20,7 +20,7 @@ import (
 )
 
 const (
-	mainProgramName    = "kartotek"
+	mainProgramName    = "kartoteka"
 	mainProgramVersion = "0.1-SNAPSHOT"
 )
 
@@ -33,7 +33,7 @@ type mainConfiguration struct {
 
 var defaultConfiguration = mainConfiguration{
 	Port:            8888,
-	Database:        "./kartotek.db",
+	Database:        "./kartoteka.db",
 	AssetsDirectory: "./assets",
 	DefaultLanguage: "pl",
 }
@@ -194,7 +194,7 @@ func mainHTTPHandler(db *sql.DB, tpl *template.Template, staticDirectory string)
 }
 
 func main() {
-	logger := log.New(os.Stderr, "kartotek: ", 0)
+	logger := log.New(os.Stderr, "kartoteka: ", 0)
 
 	cfg := defaultConfiguration
 	err := mainParseArgs(os.Args, &cfg, logger)

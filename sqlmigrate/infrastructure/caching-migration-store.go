@@ -2,8 +2,8 @@ package infrastructure
 
 import (
 	"encoding/hex"
-	"github.com/ivartj/kartotek/sqlmigrate/core"
-	"github.com/ivartj/kartotek/sqlmigrate/core/entity"
+	"github.com/ivartj/kartoteka/sqlmigrate/core"
+	"github.com/ivartj/kartoteka/sqlmigrate/core/entity"
 	"strings"
 )
 

@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"github.com/ivartj/kartotek/core"
-	"github.com/ivartj/kartotek/sqlmigrate"
+	"github.com/ivartj/kartoteka/core"
+	"github.com/ivartj/kartoteka/sqlmigrate"
 )
 
 const currentSchema = "ivartj-1"

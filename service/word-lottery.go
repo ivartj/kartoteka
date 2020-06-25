@@ -2,8 +2,8 @@ package service
 
 import (
 	"fmt"
-	"github.com/ivartj/kartotek/core"
-	entity "github.com/ivartj/kartotek/core/entity"
+	"github.com/ivartj/kartoteka/core"
+	entity "github.com/ivartj/kartoteka/core/entity"
 )
 
 type WordLottery struct {

@@ -2,8 +2,8 @@ package repository
 
 import (
 	"database/sql"
-	"github.com/ivartj/kartotek/core"
-	entity "github.com/ivartj/kartotek/core/entity"
+	"github.com/ivartj/kartoteka/core"
+	entity "github.com/ivartj/kartoteka/core/entity"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/stretchr/testify/assert"
 	"testing"

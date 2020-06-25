@@ -1,7 +1,7 @@
 package core
 
 import (
-	"github.com/ivartj/kartotek/sqlmigrate/core/entity"
+	"github.com/ivartj/kartoteka/sqlmigrate/core/entity"
 )
 
 type MigrationStore interface {

@@ -1,7 +1,7 @@
 package syntax
 
 import (
-	"github.com/ivartj/kartotek/core"
+	"github.com/ivartj/kartoteka/core"
 )
 
 func Parse(line string) (core.WordSpec, error) {
