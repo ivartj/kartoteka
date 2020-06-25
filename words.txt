@@ -1,0 +1,1463 @@
+word = "jabłko"
+lang = "pl"
+tags = [ "a1", "jedzenie" ]
+
+
+[tr]
+en = "an apple"
+no = "et eple"
+
+--
+
+word = "pizza"
+lang = "pl"
+tags = [ "a1", "jedzenie" ]
+
+[tr]
+en = "a pizza"
+no = "en pizza"
+
+--
+
+word = "banan"
+lang = "pl"
+tags = [ "a1", "jedzenie" ]
+
+[tr]
+en = "a banana"
+no = "en banan"
+
+--
+
+word = 'chleb'
+lang = 'pl'
+tags = [ 'a1', 'jedzenie' ]
+
+[tr]
+en = 'a bread'
+no = 'et brød'
+
+--
+
+word = 'masło'
+lang = 'pl'
+tags = [ 'a1', 'jedzenie' ]
+
+[tr]
+en = 'butter'
+no = '(et) smør'
+
+--
+
+word = 'telefon'
+lang = 'pl'
+tags = [ 'a1', 'urządzenie' ]
+
+[tr]
+en = 'telephone'
+no = 'telefon'
+
+--
+
+word = 'spodnie'
+lang = 'pl'
+tags = [ 'a1', 'ubranie' ]
+
+[tr]
+en = 'pants'
+no = 'en bukse'
+
+--
+
+word = 'okno'
+lang = 'pl'
+tags = [ 'a1', 'budynek' ]
+
+[tr]
+en = 'a window'
+no = 'et vindu'
+
+--
+
+word = 'dziecko'
+lang = 'pl'
+tags = [ 'a1', 'osoba', 'rodzina' ]
+
+[tr]
+en = 'a child'
+no = 'et barn'
+
+--
+
+word = 'kobieta'
+lang = 'pl'
+tags = [ 'a1', 'osoba' ]
+
+[tr]
+en = 'a woman'
+no = 'ei kvinne'
+
+--
+
+word = 'głowa'
+lang = 'pl'
+tags = [ 'a1', 'ciało' ]
+
+[tr]
+en = 'a head'
+no = 'et hode'
+
+--
+
+word = 'policja'
+lang = 'pl'
+tags = [ 'a1' ]
+
+[tr]
+en = 'police'
+no = '(et) politi'
+
+--
+
+word = 'twarz'
+lang = 'pl'
+tags = [ 'a1', 'ciało' ]
+notes = 'Mniej używane: oblicze.'
+
+[tr]
+en = 'a face'
+no = 'et ansikt, et fjes'
+
+--
+
+word = 'ulica'
+lang = 'pl'
+tags = [ 'a1', 'podróż' ]
+
+[tr]
+en = 'a street'
+no = 'ei gate'
+
+--
+
+word = 'łóżko'
+lang = 'pl'
+tags = [ 'a1', 'mebel' ]
+
+[tr]
+en = 'a bed'
+no = 'ei seng'
+
+--
+
+word = 'oko'
+lang = 'pl'
+tags = [ 'a1', 'ciało' ]
+notes = 'Liczba mnoga: oczy'
+
+[tr]
+en = 'an eye'
+no = 'et øye'
+
+--
+
+word = 'film'
+lang = 'pl'
+tags = [ 'a1' ]
+
+[tr]
+en = 'a movie, a film'
+no = 'en film'
+
+--
+
+word = 'kot'
+lang = 'pl'
+tags = [ 'a1', 'zwierzę' ]
+
+[tr]
+en = 'a cat'
+no = 'en katt'
+
+--
+
+word = 'szpital'
+lang = 'pl'
+tags = [ 'a1' ]
+
+[tr]
+en = 'a hospital'
+no = 'et sykehus'
+
+--
+
+word = 'serce'
+lang = 'pl'
+tags = [ 'a1', 'ciało' ]
+
+[tr]
+en = 'a heart'
+no = 'et hjerte'
+
+--
+
+word = 'szkoła'
+lang = 'pl'
+tags = [ 'a1' ]
+
+[tr]
+en = 'a school'
+no = 'en skole'
+
+--
+
+word = 'hotel'
+lang = 'pl'
+tags = [ 'a1', 'podróż' ]
+
+[tr]
+en = 'a hotel'
+no = 'et hotell'
+
+--
+
+word = 'pociąg'
+lang = 'pl'
+tags = [ 'a1', 'podróż' ]
+
+[tr]
+en = 'a train'
+no = 'et tog'
+
+--
+
+word = 'sklep'
+lang = 'pl'
+tags = [ 'a1' ]
+
+[tr]
+en = 'a shop, a store'
+no = 'en butikk'
+
+--
+
+word = 'radio'
+lang = 'pl'
+tags = [ 'a1', 'urządzenie' ]
+
+[tr]
+en = 'a radio'
+no = 'en radio'
+
+--
+
+word = 'samolot'
+lang = 'pl'
+tags = [ 'a1', 'podróż' ]
+
+[tr]
+en = 'an airplane'
+no = 'et fly'
+
+--
+
+word = 'rzeka'
+lang = 'pl'
+tags = [ 'a1', 'przyroda' ]
+
+[tr]
+en = 'a river'
+no = 'en elv'
+
+--
+
+word = 'las'
+lang = 'pl'
+tags = [ 'a1', 'przyroda' ]
+
+[tr]
+en = 'a forest'
+no = 'en skog'
+
+--
+
+word = 'reklama'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'advertisement'
+no = '(en) reklame'
+
+--
+
+word = 'książka'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'a book'
+no = 'ei bok'
+
+--
+
+word = 'pasek, pas'
+lang = 'pl'
+tags = [ 'a2', 'ubranie' ]
+
+[tr]
+en = 'a belt'
+no = 'et belte'
+
+--
+
+word = 'łódź'
+lang = 'pl'
+tags = [ 'a2', 'podróż' ]
+
+[tr]
+en = 'a boat'
+no = 'en båt'
+
+--
+
+word = 'łazienka'
+lang = 'pl'
+tags = [ 'a2', 'budynek' ]
+
+[tr]
+en = 'a bathroom'
+no = 'et baderom'
+
+--
+
+word = 'dorosły'
+lang = 'pl'
+tags = [ 'a2', 'osoba' ]
+
+[tr]
+en = 'an adult'
+no = 'en voksen'
+
+--
+
+word = 'aktor, aktorka'
+lang = 'pl'
+tags = [ 'a2', 'osoba', 'zawód' ]
+
+[tr]
+en = 'an actor, an actress'
+no = 'en skuespiller, ei skuespillerinne'
+
+--
+
+word = 'plaża'
+lang = 'pl'
+tags = [ 'a2', 'przyroda' ]
+
+[tr]
+en = 'a beach'
+no = 'ei strand'
+
+--
+
+word = 'pudełko'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'a box'
+no = 'en boks'
+
+--
+
+word = 'ser'
+lang = 'pl'
+tags = [ 'a2', 'jedzenie' ]
+
+[tr]
+en = 'cheese'
+no = '(en) ost'
+
+--
+
+word = 'autobus'
+lang = 'pl'
+tags = [ 'a2', 'podróż' ]
+
+[tr]
+en = 'a bus'
+no = 'en buss'
+
+--
+
+word = 'rower'
+lang = 'pl'
+tags = [ 'a2', 'podróż' ]
+
+[tr]
+en = 'a bicycle, a bike'
+no = 'en sykkel'
+
+--
+
+word = 'lotnisko'
+lang = 'pl'
+tags = [ 'a2', 'podróż' ]
+
+[tr]
+en = 'an airport'
+no = 'en flyplass, en lufthavn'
+
+--
+
+word = 'pszczoła'
+lang = 'pl'
+tags = [ 'a2', 'zwierzę' ]
+notes = '(pszczółka)'
+
+[tr]
+en = 'a bee'
+no = 'en bie'
+
+--
+
+word = 'kino'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'a cinema, a movie theatre'
+no = 'en kino'
+
+--
+
+word = 'kawa'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'coffee'
+no = '(en) kaffe'
+
+--
+
+word = 'komputer'
+lang = 'pl'
+tags = [ 'a2', 'urządzenie', 'biuro' ]
+
+[tr]
+en = 'a computer'
+no = 'en datamaskin'
+
+--
+
+word = 'koncert'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'a concert'
+no = 'en konsert'
+
+--
+
+word = 'zasłona'
+lang = 'pl'
+tags = [ 'a2', 'budynek' ]
+
+[tr]
+en = 'a curtain'
+no = 'en gardin'
+
+--
+
+word = 'komiks'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'a comic (story with pictures)'
+no = 'en tegneserie'
+
+--
+
+word = 'lekarz, lekarka, doktor'
+lang = 'pl'
+tags = [ 'a2', 'osoba', 'zawód' ]
+
+[tr]
+en = 'a doctor'
+no = 'en lege'
+
+--
+
+word = 'słownik'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'a dictionary'
+no = 'ei ordbok'
+
+--
+
+word = 'ryba'
+lang = 'pl'
+tags = [ 'a2', 'zwierzę', 'jedzenie' ]
+
+[tr]
+en = 'a fish'
+no = 'en fisk'
+
+--
+
+word = 'fabryka'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'a factory'
+no = 'en fabrikk'
+
+--
+
+word = 'stomatolog, dentysta, dentystka'
+lang = 'pl'
+tags = [ 'a2', 'osoba', 'zawód' ]
+
+[tr]
+en = 'a dentist'
+no = 'en tannlege'
+
+--
+
+word = 'sukienka'
+lang = 'pl'
+tags = [ 'a2', 'ubranie' ]
+
+[tr]
+en = 'a dress'
+no = 'ei kjole'
+
+--
+
+word = 'ucho'
+lang = 'pl'
+tags = [ 'a2', 'ciało' ]
+
+[tr]
+en = 'an ear'
+no = 'ei øre'
+
+--
+
+word = 'drzwi'
+lang = 'pl'
+tags = [ 'a2', 'budynek' ]
+notes = 'Zawsze w liczbie mnogiej.'
+
+[tr]
+en = 'a door'
+no = 'ei dør'
+
+--
+
+word = 'miska'
+lang = 'pl'
+tags = [ 'a2', 'kuchnia' ]
+
+[tr]
+en = 'a bowl'
+no = 'ei dør'
+
+--
+
+word = 'czekolada'
+lang = 'pl'
+tags = [ 'a2', 'jedzenie' ]
+
+[tr]
+en = 'chocolate'
+no = '(ei) sjokolade'
+
+--
+
+word = 'kwiat'
+lang = 'pl'
+tags = [ 'a2', 'przyroda' ]
+
+[tr]
+en = 'a flower'
+no = 'en blomst'
+
+--
+
+word = 'garaż'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'a garage'
+no = 'en garasje'
+
+--
+
+word = 'lodówka'
+lang = 'pl'
+tags = [ 'a2', 'urządzenie' ]
+
+[tr]
+en = 'a fridge'
+no = 'et kjøleskap'
+
+--
+
+word = 'okulary'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'glasses'
+no = 'briller'
+
+--
+
+word = 'ptak'
+lang = 'pl'
+tags = [ 'a2', 'zwierzę' ]
+
+[tr]
+en = 'a bird'
+no = 'en fugl'
+
+--
+
+word = 'stopa'
+lang = 'pl'
+tags = [ 'a2', 'ciało' ]
+
+[tr]
+en = 'a foot'
+no = 'en fot'
+
+--
+
+word = 'mgła'
+lang = 'pl'
+tags = [ 'b1', 'przyroda' ]
+
+[tr]
+en = 'a fog'
+no = 'ei tåke'
+
+--
+
+word = 'rolnik'
+lang = 'pl'
+tags = [ 'b1', 'osoba', 'zawód' ]
+
+[tr]
+en = 'a farmer'
+no = 'en bonde'
+
+--
+
+word = 'czosnek'
+lang = 'pl'
+tags = [ 'b1', 'jedzenie' ]
+
+[tr]
+en = 'garlic'
+no = '(en) hvitløk'
+
+--
+
+word = 'karetka, ambulans'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'an ambulance'
+no = 'en ambulanse'
+
+--
+
+word = 'ciocia'
+lang = 'pl'
+tags = [ 'b1', 'osoba', 'rodzina' ]
+
+[tr]
+en = 'an aunt'
+no = 'ei tante'
+
+--
+
+word = 'balon'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a balloon'
+no = 'en ballong'
+
+--
+
+word = 'fasola'
+lang = 'pl'
+tags = [ 'b1', 'jedzenie' ]
+
+[tr]
+en = 'a bean'
+no = 'ei bønne'
+
+--
+
+word = 'śmietnik'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a garbage bin'
+no = 'en søppeldunk'
+
+--
+
+word = 'koc'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a blanket'
+no = 'et teppe (som man har over seg)'
+
+--
+
+word = 'mózg'
+lang = 'pl'
+tags = [ 'b1', 'ciało' ]
+
+[tr]
+en = 'a brain'
+no = 'en hjerne'
+
+--
+
+word = 'marchew, marchewka'
+lang = 'pl'
+tags = [ 'b1', 'jedzenie' ]
+
+[tr]
+en = 'a carrot'
+no = 'en gulrot'
+
+--
+
+word = 'dywan'
+lang = 'pl'
+tags = [ 'b1', 'budynek', 'mebel' ]
+
+[tr]
+en = 'a carpet'
+no = 'et gulvteppe'
+
+--
+
+word = 'kura'
+lang = 'pl'
+tags = [ 'b1', 'zwierzę' ]
+
+[tr]
+en = 'a chicken'
+no = 'en kylling'
+
+--
+
+word = 'grzebień'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a comb'
+no = 'en kam'
+
+--
+
+word = 'krowa'
+lang = 'pl'
+tags = [ 'b1', 'zwierzę' ]
+
+[tr]
+en = 'a cow'
+no = 'ei ku'
+
+--
+
+word = 'tancerz, tancerka'
+lang = 'pl'
+tags = [ 'b1', 'osoba', 'zawód' ]
+
+[tr]
+en = 'a dancer'
+no = 'en danser'
+
+--
+
+word = 'lalka'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a doll'
+no = 'ei dukke'
+
+--
+
+word = 'kaczka'
+lang = 'pl'
+tags = [ 'b1', 'zwierzę' ]
+
+[tr]
+en = 'a duck'
+no = 'ei and'
+
+--
+
+word = 'rękawica'
+lang = 'pl'
+tags = [ 'b1', 'ubranie' ]
+
+[tr]
+en = 'a glove'
+no = 'en hanske'
+
+--
+
+word = 'teczka'
+lang = 'pl'
+tags = [ 'b1', 'biuro' ]
+
+[tr]
+en = 'a folder'
+no = 'ei mappe'
+
+--
+
+word = 'chmura'
+lang = 'pl'
+tags = [ 'b1', 'przyroda' ]
+
+[tr]
+en = 'a cloud'
+no = 'en sky'
+
+--
+
+word = 'inżynier'
+lang = 'pl'
+tags = [ 'b1', 'osoba', 'zawód' ]
+
+[tr]
+en = 'an engineer'
+no = 'en ingeniør'
+
+--
+
+word = 'winda'
+lang = 'pl'
+tags = [ 'b1', 'budynek' ]
+
+[tr]
+en = 'en elevator, a lift'
+no = 'en heis'
+
+--
+
+word = 'silnik'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'an engine'
+no = 'en motor'
+
+--
+
+word = 'podłoga'
+lang = 'pl'
+tags = [ 'a2', 'budynek' ]
+
+[tr]
+en = 'a floor (the bottom of a room)'
+
+--
+
+word = 'piłkarz, piłkarka'
+lang = 'pl'
+tags = [ 'a2', 'osoba', 'zawód' ]
+
+[tr]
+en = 'soccer player'
+
+--
+
+word = 'formularz'
+lang = 'pl'
+tags = [ 'b1', 'biuro' ]
+
+[tr]
+en = 'a form (that you write in)'
+
+--
+
+word = 'frytki'
+lang = 'pl'
+tags = [ 'b1', 'jedzenie' ]
+
+[tr]
+en = 'French fries'
+
+--
+
+word = 'gitara'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'a gitar'
+
+--
+
+word = 'włosy'
+lang = 'pl'
+tags = [ 'a2', 'ciało' ]
+notes = 'Zwykle jest w formie liczby mnogiej.'
+
+[tr]
+en = 'hair'
+
+--
+
+word = 'przystań'
+lang = 'pl'
+tags = [ 'a2', 'podróż' ]
+
+[tr]
+en = 'a harbor, a port'
+
+--
+
+word = 'kapelusz'
+lang = 'pl'
+tags = [ 'b1', 'ubranie' ]
+
+[tr]
+en = 'a hat'
+
+--
+
+word = 'śmigłowiec'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a helicopter'
+
+--
+
+word = 'koń'
+lang = 'pl'
+tags = [ 'a2', 'zwierzę' ]
+
+[tr]
+en = 'a horse'
+
+--
+
+word = 'lód'
+lang = 'pl'
+tags = [ 'b1', 'przyroda' ]
+
+[tr]
+en = 'ice'
+
+--
+
+word = 'lody'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'ice cream'
+
+--
+
+word = 'kurtka'
+lang = 'pl'
+tags = [ 'a2', 'ubranie' ]
+
+[tr]
+en = 'a jacket'
+
+--
+
+word = 'klawiatura'
+lang = 'pl'
+tags = [ 'a2', 'biuro', 'urządzenie' ]
+
+[tr]
+en = 'a keyboard'
+
+--
+
+word = 'król'
+lang = 'pl'
+tags = [ 'a2', 'osoba' ]
+
+[tr]
+en = 'a king'
+
+--
+
+word = 'nóż'
+lang = 'pl'
+tags = [ 'a2', 'kuchnia' ]
+
+[tr]
+en = 'a knife'
+
+--
+
+word = 'jezioro'
+lang = 'pl'
+tags = [ 'a2', 'przyroda' ]
+notes = '"Staw" ma podobne znaczenie. Stawy są zwykle mniejsze.'
+
+[tr]
+en = 'a lake'
+
+--
+
+word = 'lampa'
+lang = 'pl'
+tags = [ 'a2', 'urządzenie' ]
+
+[tr]
+en = 'a lamp'
+
+--
+
+word = 'cytryna'
+lang = 'pl'
+tags = [ 'a2', 'jedzenie' ]
+
+[tr]
+en = 'a lemon'
+
+--
+
+word = 'list'
+lang = 'pl'
+tags = [ 'a2', 'bioro' ]
+
+[tr]
+en = 'a letter (that you send)'
+
+--
+
+word = 'lew'
+lang = 'pl'
+tags = [ 'a2', 'zwierzę' ]
+
+[tr]
+en = 'a lion'
+
+--
+
+word = 'makijaż'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'makeup (cosmetics)'
+
+--
+
+word = 'mapa'
+lang = 'pl'
+tags = [ 'a2', 'podróż' ]
+
+[tr]
+en = 'a map'
+
+--
+
+word = 'mleko'
+lang = 'pl'
+tags = [ 'a2', 'jedzenie' ]
+
+[tr]
+en = 'milk'
+
+--
+
+word = 'lustro, lusterko'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'a mirror'
+
+--
+
+word = 'małpa'
+lang = 'pl'
+tags = [ 'b1', 'zwierzę' ]
+
+[tr]
+en = 'a monkey'
+
+--
+
+word = 'księżyc'
+lang = 'pl'
+tags = [ 'a2', 'przyroda' ]
+
+[tr]
+en = 'a moon (the moon)'
+
+--
+
+word = 'mysz'
+lang = 'pl'
+tags = [ 'a2', 'zwierzę' ]
+
+[tr]
+en = 'a mouse'
+
+--
+
+word = 'usta'
+lang = 'pl'
+tags = [ 'a2' ]
+notes = 'Zawsze jest w formie liczby mnogiej.'
+
+[tr]
+en = 'a mouth (lips)'
+
+--
+
+word = 'grzyb'
+lang = 'pl'
+tags = [ 'b1', 'jedzenie', 'przyroda' ]
+
+[tr]
+en = 'a mushroom'
+
+--
+
+word = 'szyja'
+lang = 'pl'
+tags = [ 'b1', 'ciało' ]
+
+[tr]
+en = 'a neck'
+
+--
+
+word = 'naszyjnik'
+lang = 'pl'
+tags = [ 'b1' ]
+
+[tr]
+en = 'a necklace'
+
+--
+
+word = 'nos'
+lang = 'pl'
+tags = [ 'a2', 'ciało' ]
+
+[tr]
+en = 'a nose'
+
+--
+
+word = 'cebula'
+lang = 'pl'
+tags = [ 'b1', 'jedzenie' ]
+
+[tr]
+en = 'an onion'
+
+--
+
+word = 'pomarańcza'
+lang = 'pl'
+tags = [ 'a2', 'jedzenie' ]
+
+[tr]
+en = 'an orange'
+
+--
+
+word = 'piekarnik'
+lang = 'pl'
+tags = [ 'b1', 'kuchnia' ]
+
+[tr]
+en = 'an oven (to make food with)'
+
+--
+
+word = 'farba'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'paint'
+
+--
+
+word = 'parking'
+lang = 'pl'
+tags = [ 'a2', 'budynek' ]
+
+[tr]
+en = 'a parking lot'
+
+--
+
+word = 'gruszka'
+lang = 'pl'
+tags = [ 'b1', 'jedzenie' ]
+
+[tr]
+en = 'a pear'
+
+--
+
+word = 'ołówek'
+lang = 'pl'
+tags = [ 'a2', 'biuro' ]
+
+[tr]
+en = 'a pencil'
+
+--
+
+word = 'paszport'
+lang = 'pl'
+tags = [ 'b1', 'podróż' ]
+
+[tr]
+en = 'a passport'
+
+--
+
+word = 'pieprz'
+lang = 'pl'
+tags = [ 'b1', 'jedzenie' ]
+
+[tr]
+en = 'pepper'
+
+--
+
+word = 'perfumy'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'perfume'
+
+--
+
+word = 'stacja benzynowa, stacja paliw'
+lang = 'pl'
+tags = [ 'b1', 'podróż' ]
+
+[tr]
+en = 'a gas station, a petrol station'
+
+--
+
+word = 'apteka'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'a pharmacy'
+
+--
+
+word = 'pianino'
+lang = 'pl'
+tags = [ 'b1', 'mebel' ]
+notes = 'Fortepian jest podobny ale nie to samo.'
+
+[tr]
+en = 'piano'
+
+--
+
+word = 'kieszeń'
+lang = 'pl'
+tags = [ 'a2', 'ubranie' ]
+
+[tr]
+en = 'a pocket'
+
+--
+
+word = 'policjant, policjantka'
+lang = 'pl'
+tags = [ 'a2', 'osoba', 'zawód' ]
+
+[tr]
+en = 'a police officer'
+
+--
+
+word = 'ziemniak, kartofel'
+lang = 'pl'
+tags = [ 'b1', 'jedzenie' ]
+
+[tr]
+en = 'a potato'
+
+--
+
+word = 'drukarka'
+lang = 'pl'
+tags = [ 'b1', 'urządzenie', 'biuro' ]
+
+[tr]
+en = 'a printer'
+
+--
+
+word = 'królik'
+lang = 'pl'
+tags = [ 'a2', 'zwierzę' ]
+
+[tr]
+en = 'a rabbit'
+
+--
+
+word = 'paragon'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'a receipt (from a store)'
+
+--
+
+word = 'restauracja'
+lang = 'pl'
+tags = [ 'a2', 'jedzenie' ]
+
+[tr]
+en = 'a restaurant'
+
+--
+
+word = 'ryż'
+lang = 'pl'
+tags = [ 'a2', 'jedzenie' ]
+
+[tr]
+en = 'rice'
+
+--
+
+word = 'rzeka'
+lang = 'pl'
+tags = [ 'a2', 'przyroda' ]
+
+[tr]
+en = 'a river'
+
+--
+
+word = 'dach'
+lang = 'pl'
+tags = [ 'a2', 'budynek' ]
+
+[tr]
+en = 'a roof'
+
+--
+
+word = 'linijka'
+lang = 'pl'
+tags = [ 'b1', 'biuro' ]
+
+[tr]
+en = 'a ruler (that you measure with)'
+
+--
+
+word = 'żagiel'
+lang = 'pl'
+tags = [ 'b1', 'podróż' ]
+
+[tr]
+en = 'a sail'
+
+--
+
+word = 'sałatka'
+lang = 'pl'
+tags = [ 'a2', 'jedzenie' ]
+
+[tr]
+en = 'salad'
+
+--
+
+word = 'sól'
+lang = 'pl'
+tags = [ 'a2', 'jedzenie' ]
+
+[tr]
+en = 'salt'
+
+--
+
+word = 'sos'
+lang = 'pl'
+tags = [ 'a2', 'jedzenie' ]
+
+[tr]
+en = 'sauce'
+
+--
+
+word = 'pierścień'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'a ring (on your finger)'
+
+--
+
+word = 'nożyczki'
+lang = 'pl'
+tags = [ 'a2', 'biuro' ]
+
+[tr]
+en = 'scissors'
+
+--
+
+word = 'szampon'
+lang = 'pl'
+tags = [ 'a2' ]
+
+[tr]
+en = 'shampoo'
+
