@@ -52,6 +52,10 @@ func main() {
 			tx.Rollback()
 		}
 	}()
+	_, err = tx.Exec("pragma foreign_keys = on;")
+	if err != nil {
+		panic(err)
+	}
 	wordStore := repository.NewWordStore(tx)
 	userStore := repository.NewUserStore(tx)
 	user, err := userStore.GetByUsername(username)
