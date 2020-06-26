@@ -5,7 +5,7 @@
 	<!-- TODO: Translate parts of the page using i18n -->
 	<head>
 		<meta charset="utf-8" />
-		<title>Enter word specification</title>
+		<title>{{tr .Localizer "EnterWordSearch" "Enter word search query"}}</title>
 		<meta name="viewport"
 		      content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet"
@@ -21,7 +21,7 @@
 			       placeholder="lang:pl tr:en (#a1|#a2)"
 			       autofocus />
 			<input type="submit"
-			       value="Get" />
+			       value="{{tr .Localizer "Find" "Find"}}" />
 		</form>
 	</body>
 </html>
@@ -33,7 +33,7 @@
 	<!-- TODO: Translate parts of the page using i18n -->
 	<head>
 		<meta charset="utf-8" />
-		<title>{{if .Error}}ERROR: {{.Error}}{{else}}{{.Word.Word}}{{end}}</title>
+		<title>{{if .Error}}{{tr .Localizer "Error" "Error"}}: {{.Error}}{{else}}{{.Word.Word}}{{end}}</title>
 		<meta name="viewport"
 		      content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet"
@@ -43,7 +43,7 @@
 	<body>
 		{{if .Error}}
 			<section class="error">
-				<h1>Error</h1>
+				<h1>{{tr .Localizer "Error" "Error"}}</h1>
 				<p>{{.Error}}</p>
 			</section>
 		{{else}}
@@ -55,7 +55,7 @@
 				{{end}}
 
 				{{if .Word.Translations}}
-					<h2>Translations</h2>
+					<h2>{{tr .Localizer "Translations" "Translations"}}</h2>
 					<dl class="random-word-translations">
 						{{with $ctx := .}}
 						{{range .Word.Translations}}
@@ -68,7 +68,7 @@
 
 				{{if .Word.Tags}}
 					<p>
-						Tags:
+						{{tr .Localizer "Tags" "Tags"}}:
 						{{range .Word.Tags}}
 							#{{.}}
 						{{end}}
@@ -77,7 +77,7 @@
 			</article>
 		{{end}}
 		<section>
-			<h2>New word</h2>
+			<h2>{{tr .Localizer "GetNewWord" "New word"}}</h2>
 			<form>
 				<input type="text"
 				       name="q"
@@ -85,7 +85,7 @@
 				       placeholder="lang:pl tr:en (#a1|#a2)" />
 				<input id="first-focus"
 				       type="submit"
-				       value="Get"
+			         value="{{tr .Localizer "Find" "Find"}}"
 				       autofocus />
 			</form>
 		</section>

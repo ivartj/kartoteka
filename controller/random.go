@@ -2,11 +2,14 @@ package controller
 
 import (
 	"database/sql"
+	"fmt"
 	"github.com/ivartj/kartoteka/core"
 	entity "github.com/ivartj/kartoteka/core/entity"
 	"github.com/ivartj/kartoteka/repository"
 	"github.com/ivartj/kartoteka/service"
 	"github.com/ivartj/kartoteka/syntax"
+	"github.com/nicksnyder/go-i18n/v2/i18n"
+	"golang.org/x/text/language"
 	"html/template"
 	"math/rand"
 	"net/http"
@@ -17,17 +20,19 @@ import (
 type Random struct {
 	txProvider
 	templateProvider
-	mux      *http.ServeMux
-	rng      *rand.Rand
-	rngMutex sync.Mutex
+	mux        *http.ServeMux
+	rng        *rand.Rand
+	rngMutex   sync.Mutex
+	i18nBundle *i18n.Bundle
 }
 
-func NewRandom(db *sql.DB, tpl *template.Template) *Random {
+func NewRandom(db *sql.DB, tpl *template.Template, i18nBundle *i18n.Bundle) *Random {
 	ctx := &Random{
 		mux:              http.NewServeMux(),
 		txProvider:       txProvider{db},
 		templateProvider: templateProvider{tpl},
 		rng:              rand.New(rand.NewSource(time.Now().UnixNano())),
+		i18nBundle:       i18nBundle,
 	}
 
 	return ctx
@@ -57,7 +62,11 @@ func (ctx *Random) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	q := req.URL.Query().Get("q")
 	var err error
 	if q == "" {
-		err = ctx.Template().ExecuteTemplate(w, "random-index", nil)
+		localizer := i18n.NewLocalizer(ctx.i18nBundle, req.Header.Get("Accept-Language"))
+		pageData := map[string]interface{}{
+			"Localizer": localizer,
+		}
+		err = ctx.Template().ExecuteTemplate(w, "random-index", pageData)
 		if err != nil {
 			panic(err)
 		}
@@ -69,13 +78,19 @@ func (ctx *Random) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		var tx *sql.Tx
 		var languageNativeNameMap map[string]string
 
+		localizer := i18n.NewLocalizer(ctx.i18nBundle, req.Header.Get("Accept-Language"))
+
 		pageData := map[string]interface{}{
-			"Spec": q,
+			"Spec":      q,
+			"Localizer": localizer,
 		}
 
 		wordSpec, err = syntax.ParseWordSpec(q)
 		if err != nil {
-			pageData["Error"] = err.Error()
+			pageData["Error"] = map[string]string{
+				"Message":  err.Error(),
+				"Language": language.English.String(),
+			}
 			goto render
 		}
 
@@ -92,12 +107,25 @@ func (ctx *Random) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		wordLottery = service.NewWordLottery(wordStore, wordSpec, ctx.rng)
 		word, err = wordLottery.DrawWord()
 		if err == core.ErrNotFound {
-			pageData["Error"] = "No word entries match that query"
+			msg, lang, err := localizer.LocalizeWithTag(&i18n.LocalizeConfig{
+				DefaultMessage: &i18n.Message{
+					ID:    "NoMatches",
+					Other: "No entries match that query",
+				},
+			})
+			if err != nil {
+				panic(fmt.Errorf("Localization error: %w", err))
+			}
+			pageData["Error"] = map[string]string{
+				"Message":  msg,
+				"Language": lang.String(),
+			}
 			goto render
 		} else if err != nil {
 			panic(err)
 		}
 		pageData["Word"] = word
+		pageData["Localizer"] = i18n.NewLocalizer(ctx.i18nBundle, word.LanguageCode, req.Header.Get("Accept-Language"))
 
 	render:
 		err = ctx.Template().ExecuteTemplate(w, "random-word", pageData)
