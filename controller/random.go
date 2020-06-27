@@ -9,7 +9,6 @@ import (
 	"github.com/ivartj/kartoteka/service"
 	"github.com/ivartj/kartoteka/syntax"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
-	"golang.org/x/text/language"
 	"html/template"
 	"math/rand"
 	"net/http"
@@ -87,10 +86,7 @@ func (ctx *Random) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 		wordSpec, err = syntax.ParseWordSpec(q)
 		if err != nil {
-			pageData["Error"] = map[string]string{
-				"Message":  err.Error(),
-				"Language": language.English.String(),
-			}
+			pageData["Error"] = err.Error()
 			goto render
 		}
 
@@ -107,7 +103,7 @@ func (ctx *Random) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		wordLottery = service.NewWordLottery(wordStore, wordSpec, ctx.rng)
 		word, err = wordLottery.DrawWord()
 		if err == core.ErrNotFound {
-			msg, lang, err := localizer.LocalizeWithTag(&i18n.LocalizeConfig{
+			msg, err := localizer.Localize(&i18n.LocalizeConfig{
 				DefaultMessage: &i18n.Message{
 					ID:    "NoMatches",
 					Other: "No entries match that query",
@@ -116,10 +112,7 @@ func (ctx *Random) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 			if err != nil {
 				panic(fmt.Errorf("Localization error: %w", err))
 			}
-			pageData["Error"] = map[string]string{
-				"Message":  msg,
-				"Language": lang.String(),
-			}
+			pageData["Error"] = msg
 			goto render
 		} else if err != nil {
 			panic(err)
